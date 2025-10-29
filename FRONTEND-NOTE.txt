@@ -1,0 +1,6 @@
+If you open the front-end via a file server like VSCode Live Server (http://127.0.0.1:5501),
+the API is on a different origin (http://localhost:3000). This patched frontend now
+uses an absolute API base URL, so it will work from any origin.
+
+Optional: you can override at runtime by setting window.API_BASE in the console:
+  window.API_BASE = 'http://127.0.0.1:3000'

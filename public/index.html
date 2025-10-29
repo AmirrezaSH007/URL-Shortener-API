@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>URL Shortener</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#0b0d12;--card:#131722;--muted:#9aa4b2;--text:#e8eef6;--accent:#6ea8fe;--border:#1f2a3c}
+    *{box-sizing:border-box}html,body{margin:0;padding:0;font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text)}
+    a{color:var(--accent)} .container{max-width:760px;margin:0 auto;padding:24px}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px}
+    h1{font-size:28px;margin:0 0 12px} p{color:var(--muted)}
+    label{display:block;margin:12px 0 6px} input,button{font-size:16px}
+    input[type=text]{width:100%;padding:10px 12px;border-radius:10px;border:1px solid var(--border);background:#0f1520;color:var(--text)}
+    .row{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+    button{padding:10px 14px;border-radius:10px;border:1px solid #263246;background:#151b26;color:var(--text);font-weight:600;cursor:pointer}
+    button.primary{background:linear-gradient(135deg,#6ea8fe,#8ee3f5);color:#0b0d12;border:none}
+    .result{margin-top:16px;padding:12px;border-radius:12px;background:#0f1520;border:1px dashed #27334b}
+    code{background:#0f1520;padding:2px 6px;border-radius:8px;border:1px solid #27334b}
+    .muted{color:var(--muted)}
+    .stats{margin-top:8px;color:var(--muted)}
+  </style>
+</head>
+<body>
+  <main class="container">
+    <h1>URL Shortener</h1>
+    <p class="muted">Enter a long URL to generate a short link. Optionally supply a custom slug.</p>
+    <div class="card">
+      <label for="url">Long URL</label>
+      <input id="url" type="text" placeholder="https://example.com/article?id=123" autocomplete="off"/>
+      <label for="slug">Custom slug (optional)</label>
+      <input id="slug" type="text" placeholder="e.g., mylink123" autocomplete="off"/>
+      <div class="row">
+        <button class="primary" id="shortenBtn">Shorten</button>
+        <button id="clearBtn">Clear</button>
+      </div>
+      <div id="output" class="result" style="display:none;"></div>
+        <button id="copyBtn" style="margin-top:8px; display:none;">📋 Copy Link</button>
+    </div>
+
+    <div class="card" style="margin-top:16px">
+      <h2 style="margin:0 0 8px;font-size:18px">Check Link Stats</h2>
+      <label for="statsSlug">Slug</label>
+      <input id="statsSlug" type="text" placeholder="Enter slug (e.g., mylink123)"/>
+      <div class="row">
+        <button id="statsBtn">Get Stats</button>
+      </div>
+      <div id="statsOut" class="result" style="display:none;"></div>
+    </div>
+
+    <p class="muted" style="margin-top:18px">API endpoints: <code>POST /api/shorten</code>, <code>GET /:slug</code>, <code>GET /api/stats/:slug</code></p>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
